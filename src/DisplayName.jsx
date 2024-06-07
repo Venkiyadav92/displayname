@@ -15,21 +15,21 @@ function FullNameDisplay() {
 
   const handleSubmit = (event) => {
     event.preventDefault(); 
-    setFullName(`${firstName} ${lastName}`); 
+    const combinedName = `${firstName.trim()} ${lastName.trim()}`; 
+    setFullName(combinedName);
   };
 
- 
   const isFormValid = () => {
-    return firstName.trim() !== '' && lastName.trim() !== '';
+    return combinedName !== ''; 
   };
+
+  const combinedName = `${firstName.trim()} ${lastName.trim()}`; 
 
   return (
     <div className="full-name-display">
       <h2>Full Name Display</h2>
-      
       <form onSubmit={handleSubmit}>
         <label htmlFor="firstName">First Name:</label>
-        
         <input
           type="text"
           id="firstName"
@@ -39,7 +39,6 @@ function FullNameDisplay() {
           required
         />
         <label htmlFor="lastName">Last Name:</label>
-      
         <input
           type="text"
           id="lastName"
@@ -48,7 +47,6 @@ function FullNameDisplay() {
           onChange={handleLastNameChange}
           required
         />
-        
         <button type="submit" disabled={!isFormValid()}>Submit</button>
       </form>
       {fullName && <p>Full Name: {fullName}</p>}
